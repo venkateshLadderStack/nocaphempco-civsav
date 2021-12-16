@@ -1,0 +1,23 @@
+.c-from-left {
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.c-from-right {
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.c-from-left,
+.c-from-right {
+  transition: opacity 650ms ease-in, -webkit-transform 800ms ease;
+  transition: opacity 650ms ease-in, transform 800ms ease;
+  opacity: 0;
+}
+
+.c-from-left.appear,
+.c-from-right.appear {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1;
+}

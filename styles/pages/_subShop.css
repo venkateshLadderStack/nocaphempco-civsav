@@ -1,0 +1,21 @@
+.shop-panel .row-no-margin {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.shop-panel .content-ktsi-right {
+  text-align: right;
+}
+.shop-panel .col-md-6 {
+  width: 50%;
+}
+.shop-panel .kt-si-table-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .shop-panel .content-ktsi-right {
+    padding-right: 50px;
+  }
+}

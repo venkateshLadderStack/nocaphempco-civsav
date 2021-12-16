@@ -1,0 +1,15 @@
+.page-content .panel-layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.page-content .panel-grid {
+  width: 33.33%;
+  float: left;
+}
+
+.page-content .btn {
+  margin-top: 0px !important;
+  text-align: center;
+}

@@ -1,0 +1,146 @@
+#logo {
+  height: 100px;
+  width: 250px;
+  transition: all 0.4s ease-in-out;
+}
+.parent {
+  display: block;
+  position: relative;
+  float: left;
+  /* line-height: 30px; */
+}
+.hide- {
+  display: none !important;
+}
+.parent a {
+  margin: 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: normal;
+}
+.parent:hover > ul {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+}
+.child {
+  display: none;
+  background-color: #fff;
+}
+.child li {
+  background-color: #fff;
+  width: 250px;
+  padding: 2px 5px;
+  line-height: 15px;
+}
+.child li a {
+  color: #000000;
+  display: block;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  /* min-width: 10em; */
+}
+ul ul ul {
+  left: 100%;
+  top: 0;
+  margin-left: -1px;
+}
+ul ul {
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  border: 1px solid #eee;
+}
+/* li:hover {
+  background-color: #95b4ca;
+} */
+ul > .parent:hover > .top {
+  font-weight: bold;
+  color: #f1803e;
+}
+.parent li:hover {
+  background-color: #f1803e;
+}
+.parent li:hover > a {
+  color: #fff;
+}
+
+.expand {
+  font-size: 12px;
+  float: right;
+  margin-right: 5px;
+}
+
+/* Popup cart */
+
+.popup-cart-transition {
+  transition: opacity 300ms ease, -webkit-transform 500ms ease-out;
+  transition: opacity 300ms ease, transform 500ms ease-out;
+}
+
+/* Responsive */
+@media screen and (max-width: 1023px) {
+  #side-bar {
+    background-color: #fff;
+    position: fixed;
+    padding: 5px;
+    padding-top: 50px;
+    width: 400px;
+    display: block;
+    transform: translateX(-700px);
+    box-shadow: 5px 0px 4px -4px rgba(99, 69, 69, 0.2),
+      3px 0px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1000;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    transition: transform 0.4s ease-out;
+    overflow-y: scroll;
+  }
+  .parent {
+    float: none;
+  }
+  .child li {
+    width: auto;
+  }
+  li {
+    float: none;
+  }
+  ul ul {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    border: none;
+  }
+  .parent > ul {
+    display: block;
+    position: relative;
+    margin-left: 20px;
+    /* z-index: 1000; */
+  }
+  .parent > a {
+    font-weight: bold;
+  }
+  ul ul ul {
+    left: 0;
+    /* top: 0;
+    margin-left: -1px; */
+  }
+  .parent:hover > ul {
+    display: block;
+    position: relative;
+    /* position: absolute; */
+    /* z-index: 1000; */
+  }
+  ul > .parent:hover > .top {
+    font-weight: bold;
+    color: #f1803e;
+  }
+  .parent li:hover {
+    background-color: #fff;
+  }
+  .parent li:hover > a {
+    color: #333;
+  }
+}
