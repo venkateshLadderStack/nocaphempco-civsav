@@ -1,3 +1,8 @@
+.shop-banner {
+  background-image: url(../../src/assets/images/NCHC-Shop-Banner.webp);
+  background-position: center top;
+}
+
 .shop-content .panel-grid {
   margin-bottom: 0;
 }

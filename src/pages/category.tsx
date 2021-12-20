@@ -162,19 +162,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 path
                 title
                 label
-                childItems(first: 30)  {
+                childItems(first: 30) {
                   edges {
                     node {
                       label
                       title
                       path
-                      childItems(first: 30)  {
+                      childItems(first: 30) {
                         edges {
                           node {
                             label
                             title
                             path
-                            childItems(first: 30)  {
+                            childItems(first: 30) {
                               edges {
                                 node {
                                   label
@@ -198,6 +198,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
   });
   return { props: { data: data } };
 };
-
 
 export default Category;

@@ -5,12 +5,13 @@ import client from '@/config/apollo-client';
 import Seo from '@/components/seo';
 import Layout from '@/components/layout';
 import Product from '@/components/global/product';
+import BreadCrumb from '@/components/global/breadcrumb';
 
 export default function Shop({
   data,
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { products, menu } = data;
+  const { products } = data;
 
   useEffect(() => {
     // const filter = products.edges.filter((i) => i.node.description === null);
@@ -20,7 +21,11 @@ export default function Shop({
   return (
     <Fragment>
       <Seo title='Shop' />
-      <Layout menu={menu.menuItems.edges}>
+      <Layout>
+        <div className='px-4 mb-7'>
+          <BreadCrumb currentPageLabel='Shop' />
+        </div>
+        <div className='w-full py-[150px] shop-banner bg-cover relative mb-28'></div>
         <div className='px-4 py-7 mb-7'>
           {!error && products.edges.length && (
             <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5'>
@@ -52,49 +57,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data, error } = await client.query({
     query: gql`
       query {
-        menu(id: "67", idType: DATABASE_ID) {
-          databaseId
-          id
-          locations
-          name
-          slug
-          menuItems(first: 100) {
-            edges {
-              node {
-                path
-                title
-                label
-                childItems(first: 30) {
-                  edges {
-                    node {
-                      label
-                      title
-                      path
-                      childItems(first: 30) {
-                        edges {
-                          node {
-                            label
-                            title
-                            path
-                            childItems(first: 30) {
-                              edges {
-                                node {
-                                  label
-                                  title
-                                  path
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         products(
           where: { status: "publish", orderby: { field: DATE, order: DESC } }
           first: 66

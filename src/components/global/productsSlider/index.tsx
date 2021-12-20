@@ -4,7 +4,7 @@ import {
   MdOutlineArrowBackIos,
   MdOutlineArrowForwardIos,
 } from 'react-icons/md';
-import Heading from '@/components/global/heading';
+// import Heading from '@/components/global/heading';
 import Product from '@/components/global/product';
 
 const settings = {
@@ -74,12 +74,12 @@ interface Props {
   items: any;
 }
 
-export default function ProductsSlider({ title, items }: Props) {
+export default function ProductsSlider({ items }: Props) {
   return (
     <section className='relative px-4 mb-14'>
-      <div className='mb-10 text-center'>
+      {/* <div className='mb-10 text-center'>
         <Heading title={title} />
-      </div>
+      </div> */}
       <Slider {...settings}>
         {items.map(({ node }: { node: any }, index: number) => (
           <div className='px-2 py-7' key={index}>

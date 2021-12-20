@@ -24,6 +24,7 @@ module.exports = {
         shipGray: '#3C3B40',
         grayLight: '#EEEEEE',
         mystic: '#e1e5ee',
+        breadcrumb: '#16a085',
       },
       fontFamily: {
         heading: ['Poppins', 'sans-serif'],

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import CartItem from './cartItem';
 import Button from '@/components/global/button';
+import Alert from '@/components/global/alert';
 
 // const list = [1, 2, 3, 4, 5];
 
@@ -11,12 +12,9 @@ export default function Summary({
 }: any) {
   return (
     <div className='w-full'>
-      <h1 className='text-3xl font-bold text-mine font-heading'>
+      <h1 className='text-3xl font-bold text-mine font-heading mb-4'>
         Cart Summary
       </h1>
-      <p className='mt-6 mb-1 text-2xl font-medium text-mine font-heading'>
-        Congratulations, your order qualifies for free shipping!
-      </p>
       <div className='flex items-center py-3 bg-input'>
         <p className='w-3/5 pl-3 text-base font-bold text-center font-heading text-mine'>
           Product
@@ -62,6 +60,13 @@ export default function Summary({
           size='small'
         />
       </div>
+      <p className='mt-4 mb-4 text-2xl font-medium text-mine font-heading'>
+        Congratulations, your order qualifies for free shipping!
+      </p>
+      <Alert
+        type='error'
+        text='We do not ship Delta 8 products to Alaska, Arizona, Arkansas, Colorado, Delaware, Idaho, Kentucky, Mississippi, Montana, New York, Oregon, Rhode Island, Utah, Washington, or Vermont. Your order will be CANCELED if you try to order from these states.'
+      />
     </div>
   );
 }

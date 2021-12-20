@@ -7,7 +7,7 @@ import Layout from '@/components/layout';
 import Hero from '@/components/homePage/hero';
 import ProductsSlider from '@/components/global/productsSlider';
 import WholeSale from '@/components/global/banner/wholeSale';
-import Categories from '@/components/homePage/categories/old';
+import Categories from '@/components/homePage/categories';
 import Reviews from '@/components/homePage/reviews';
 import Instagram from '@/components/global/instagram';
 
@@ -15,7 +15,7 @@ const Home: NextPage = ({
   data,
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { products, menu, latest } = data;
+  const { products, latest } = data;
 
   useEffect(() => {
     const sliders = document.querySelectorAll('.c-slide-in');
@@ -44,13 +44,13 @@ const Home: NextPage = ({
   }, []);
 
   return (
-    <Layout menu={menu.menuItems.edges}>
+    <Layout>
       <Hero />
       <Reviews />
       {!error && products.edges.length && (
         <ProductsSlider title='Featured Products' items={products.edges} />
       )}
-      <Categories isMasonry title='Categories' />
+      <Categories isMasonry />
       {latest.edges.length && (
         <ProductsSlider title='Latest Products' items={latest.edges} />
       )}
@@ -65,49 +65,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data, error } = await client.query({
     query: gql`
       query {
-        menu(id: "67", idType: DATABASE_ID) {
-          databaseId
-          id
-          locations
-          name
-          slug
-          menuItems(first: 100) {
-            edges {
-              node {
-                path
-                title
-                label
-                childItems(first: 30) {
-                  edges {
-                    node {
-                      label
-                      title
-                      path
-                      childItems(first: 30) {
-                        edges {
-                          node {
-                            label
-                            title
-                            path
-                            childItems(first: 30) {
-                              edges {
-                                node {
-                                  label
-                                  title
-                                  path
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         products(
           where: {
             status: "publish"

@@ -5,6 +5,7 @@ import { gql } from '@apollo/client';
 import client from '@/config/apollo-client';
 import Layout from '@/components/layout';
 import BlogPost from '@/components/blog/post';
+import BreadCrumb from '@/components/global/breadcrumb';
 
 const breakpointColumnsObj = {
   default: 4,
@@ -16,9 +17,12 @@ const breakpointColumnsObj = {
 const Blog: NextPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { menu, posts } = data;
+  const { posts } = data;
   return (
-    <Layout menu={menu.menuItems.edges}>
+    <Layout>
+      <div className='px-4'>
+        <BreadCrumb currentPageLabel='Blog' />
+      </div>
       <div className='px-4 py-14'>
         <Masonry
           breakpointCols={breakpointColumnsObj}
@@ -44,49 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data, error } = await client.query({
     query: gql`
       query {
-        menu(id: "67", idType: DATABASE_ID) {
-          databaseId
-          id
-          locations
-          name
-          slug
-          menuItems(first: 100) {
-            edges {
-              node {
-                path
-                title
-                label
-                childItems(first: 30) {
-                  edges {
-                    node {
-                      label
-                      title
-                      path
-                      childItems(first: 30) {
-                        edges {
-                          node {
-                            label
-                            title
-                            path
-                            childItems(first: 30) {
-                              edges {
-                                node {
-                                  label
-                                  title
-                                  path
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         posts(first: 50) {
           edges {
             node {

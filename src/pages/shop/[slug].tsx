@@ -6,17 +6,19 @@ import client from '@/config/apollo-client';
 import Layout from '@/components/layout';
 import Product from '@/components/global/product';
 import Accordion from '@/components/global/accordion';
+import BreadCrumb from '@/components/global/breadcrumb';
 
 export default function ShopPages({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { page, menu } = data;
+  const { page } = data;
 
   const [topContent, setTopContent] = useState('');
   const [remainingContent, setContent] = useState<any>(null);
   const [sectionTitle, setSectionTitle] = useState<string>('');
   const [accordTitle, setAccordionTitle] = useState<any>([]);
   const [accordContent, setAccordionContent] = useState<any>([]);
+  const [pageTitle, setPageTitle] = useState<string>('');
 
   useEffect(() => {
     setAccordionTitle([]);
@@ -26,9 +28,9 @@ export default function ShopPages({
     snippet.innerHTML = contents;
     const mainDiv = snippet.querySelector('.panel-layout');
     const childDivs = mainDiv?.querySelectorAll('.panel-grid');
-    // const isUl = childDivs![0].getElementsByTagName('ul');
+    const title = mainDiv?.getElementsByTagName('h1');
+    setPageTitle(title![0].innerHTML);
     const isUl = childDivs![0].getElementsByTagName('ul');
-    // lastURL = links[links.length - 1].href; // or getAttribute("href")
     if (isUl.length === 0) {
       setTopContent(childDivs![0].innerHTML);
     }
@@ -62,7 +64,13 @@ export default function ShopPages({
   return (
     <Fragment>
       {/* <Seo title={page.title} /> */}
-      <Layout menu={menu.menuItems.edges}>
+      <Layout>
+        <div className='px-4 mb-7'>
+          <BreadCrumb
+            pageList={[{ label: 'shop', path: '/shop' }]}
+            currentPageLabel={pageTitle}
+          />
+        </div>
         <div className='px-4 py-7 mb-7'>
           <div
             className='px-8 xs:px-0 entry-content max-w-none font-heading shop-panel'
@@ -123,49 +131,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { data } = await client.query({
     query: gql`
       query ($slug: ID!) {
-        menu(id: "67", idType: DATABASE_ID) {
-          databaseId
-          id
-          locations
-          name
-          slug
-          menuItems(first: 100) {
-            edges {
-              node {
-                path
-                title
-                label
-                childItems(first: 30) {
-                  edges {
-                    node {
-                      label
-                      title
-                      path
-                      childItems(first: 30) {
-                        edges {
-                          node {
-                            label
-                            title
-                            path
-                            childItems(first: 30) {
-                              edges {
-                                node {
-                                  label
-                                  title
-                                  path
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         page(id: $slug, idType: URI) {
           title
           slug

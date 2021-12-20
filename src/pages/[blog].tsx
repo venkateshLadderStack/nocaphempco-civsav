@@ -3,13 +3,20 @@ import { GetStaticProps, InferGetStaticPropsType, GetStaticPaths } from 'next';
 import { gql } from '@apollo/client';
 import client from '@/config/apollo-client';
 import Layout from '@/components/layout';
+import BreadCrumb from '@/components/global/breadcrumb';
 
 const SingleBlog: NextPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { menu, post } = data;
+  const { post } = data;
   return (
-    <Layout menu={menu.menuItems.edges}>
+    <Layout>
+      <div className='px-4 md:px-20 mb-7'>
+        <BreadCrumb
+          pageList={[{ label: 'blog', path: '/blog' }]}
+          currentPageLabel={post.title}
+        />
+      </div>
       <div className='px-4 md:px-24 py-14'>
         <div
           className='entry-content font-heading blog-content'
@@ -25,49 +32,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data, error } = await client.query({
     query: gql`
       query ($slug: ID!) {
-        menu(id: "67", idType: DATABASE_ID) {
-          databaseId
-          id
-          locations
-          name
-          slug
-          menuItems(first: 100) {
-            edges {
-              node {
-                path
-                title
-                label
-                childItems(first: 30) {
-                  edges {
-                    node {
-                      label
-                      title
-                      path
-                      childItems(first: 30) {
-                        edges {
-                          node {
-                            label
-                            title
-                            path
-                            childItems(first: 30) {
-                              edges {
-                                node {
-                                  label
-                                  title
-                                  path
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         post(id: $slug, idType: SLUG) {
           content
           slug

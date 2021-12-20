@@ -8,14 +8,21 @@ import Detail from '@/components/productDetail/details';
 import ProductReviews from '@/components/productDetail/reviews';
 import ProductsSlider from '@/components/global/productsSlider';
 import Instagram from '@/components/global/instagram';
+import BreadCrumb from '@/components/global/breadcrumb';
 
 export default function SingleProduct({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { product, menu } = data;
+  const { product } = data;
 
   return (
-    <Layout menu={menu.menuItems.edges}>
+    <Layout>
+      <div className='px-4 mb-7'>
+        <BreadCrumb
+          pageList={[{ label: 'shop', path: '/shop' }]}
+          currentPageLabel={product.name}
+        />
+      </div>
       <div className='max-w-[1330px] mx-auto'>
         <div className='px-6 mb-20 xs:mb-10'>
           <div className='flex flex-col-reverse space-y-10 lg:flex-row lg:justify-between lg:space-y-0 lg:space-x-10'>
@@ -44,49 +51,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { data } = await client.query({
     query: gql`
       query ($slug: ID!) {
-        menu(id: "67", idType: DATABASE_ID) {
-          databaseId
-          id
-          locations
-          name
-          slug
-          menuItems(first: 100) {
-            edges {
-              node {
-                path
-                title
-                label
-                childItems(first: 30) {
-                  edges {
-                    node {
-                      label
-                      title
-                      path
-                      childItems(first: 30) {
-                        edges {
-                          node {
-                            label
-                            title
-                            path
-                            childItems(first: 30) {
-                              edges {
-                                node {
-                                  label
-                                  title
-                                  path
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         product(id: $slug, idType: SLUG) {
           name
           averageRating

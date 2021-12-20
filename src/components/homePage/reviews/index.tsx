@@ -92,9 +92,9 @@ export default function Reviews() {
   }, []);
   return (
     <section className='w-full h-full mb-14 lg:px-4 '>
-      <div className='pt-8 pb-16 bg-banner '>
+      <div className='pt-8 pb-16 bg-banner'>
         <div className=' text-xl leading-8 md:text-3xl lg:text-[40px] lg:leading-[60px] text-center font-heading mb-8 font-medium pl-2 pr-10 sm:pl-8 md:pl-0 xs:px-0'>
-          Real Reviews From Real Customers
+          {/* Real Reviews From Real Customers */}
         </div>
         <div className='mx-auto' style={{ maxWidth: sliderWidth }}>
           <Slider {...settings}>
@@ -151,7 +151,7 @@ function PreArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className='slick-arrow z-10 h-[50px] w-[30px] absolute xs:-top-22 -top-18 lg:-top-22 cursor-pointer xs:right-3 right-6 xs:hidden'
+      className='slick-arrow z-10 bg-opacity-30 h-[50px] w-[30px] absolute top-[35%] hidden md:block -left-5 lg:-left-8 cursor-pointer hover:bg-opacity-60'
       onClick={onClick}
     >
       <div className='flex items-center justify-center w-full h-full'>
@@ -165,7 +165,7 @@ function NextArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className='slick-arrow z-10 h-[50px] w-[30px] absolute xs:-top-22 xs:-right-1 -top-18 lg:-top-22 right-0 cursor-pointer xs:hidden'
+      className='slick-arrow z-10 bg-opacity-30 h-[50px] w-[30px] absolute top-[35%] hidden md:block -right-5 lg:-right-8 cursor-pointer hover:bg-opacity-60'
       onClick={onClick}
     >
       <div className='flex items-center justify-center w-full h-full'>
