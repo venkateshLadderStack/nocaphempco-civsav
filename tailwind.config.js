@@ -48,6 +48,8 @@ module.exports = {
         drop: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         'cart-popup':
           '5px 0px 4px -4px rgba(99, 69, 69, 0.2), 3px 0px 20px 0 rgba(0, 0, 0, 0.19)',
+        emailPopup: '1px 1px 3px 0px rgb(2 2 2 / 31%)',
+        emailInput: 'rgba(0,0,0,.0980392)0 1px',
       },
       textShadow: {
         slide: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -76,6 +78,16 @@ module.exports = {
       spacing: {
         18: '4.5rem',
         22: '5.5rem',
+      },
+      transitionProperty: {
+        width: 'width',
+        maxHeight: 'max-height',
+      },
+      transitionDuration: {
+        400: '400ms',
+      },
+      transitionTimingFunction: {
+        ease: 'ease',
       },
       typography: {
         DEFAULT: {

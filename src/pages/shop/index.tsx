@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { gql } from '@apollo/client';
 import client from '@/config/apollo-client';
@@ -11,6 +11,12 @@ export default function Shop({
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { products, menu } = data;
+
+  useEffect(() => {
+    // const filter = products.edges.filter((i) => i.node.description === null);
+    // console.log('----products', filter);
+  }, []);
+
   return (
     <Fragment>
       <Seo title='Shop' />
@@ -21,6 +27,7 @@ export default function Shop({
               {products.edges.map(({ node }: { node: any }, index: number) => (
                 <div key={index} className='mx-auto'>
                   <Product
+                    id={node.databaseId}
                     name={node.name}
                     slug={node.slug}
                     stockStatus={node.stockStatus}
@@ -30,6 +37,7 @@ export default function Shop({
                     attributes={node.attributes}
                     thumbnail={node.image.mediaItemUrl}
                     isSlider
+                    type={node.type}
                   />
                 </div>
               ))}
@@ -56,19 +64,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 path
                 title
                 label
-                childItems(first: 30)  {
+                childItems(first: 30) {
                   edges {
                     node {
                       label
                       title
                       path
-                      childItems(first: 30)  {
+                      childItems(first: 30) {
                         edges {
                           node {
                             label
                             title
                             path
-                            childItems(first: 30)  {
+                            childItems(first: 30) {
                               edges {
                                 node {
                                   label
@@ -89,14 +97,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
         products(
           where: { status: "publish", orderby: { field: DATE, order: DESC } }
-          first: 36
+          first: 66
         ) {
           edges {
             node {
               name
               featured
+              description(format: RENDERED)
               reviewCount
               slug
+              type
               image {
                 mediaItemUrl
                 sourceUrl

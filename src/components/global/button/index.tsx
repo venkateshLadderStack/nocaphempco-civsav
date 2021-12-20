@@ -9,6 +9,7 @@ interface Props {
   href?: string;
   path?: any;
   isSlider?: boolean;
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -19,11 +20,16 @@ export default function Button({
   href,
   path = '/',
   isSlider = false,
+  onClick,
 }: Props) {
   return (
     <Fragment>
       {type === 'button' ? (
-        <button className='p-[2px] bg-btn-border rounded-full max-w-max shadow-drop'>
+        <button
+          type='button'
+          className='p-[2px] bg-btn-border rounded-full max-w-max shadow-drop'
+          onClick={onClick}
+        >
           {isSlider ? (
             <div
               className={`bg-btn rounded-full font-roboto font-black text-black uppercase flex justify-center items-center ${

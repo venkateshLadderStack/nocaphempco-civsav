@@ -3,8 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Rating from '../rating';
 import Button from '../button';
+import useCart from '@/hooks/usecart';
 
 interface Props {
+  id: string;
   isRated?: boolean;
   classes?: string;
   shop?: boolean;
@@ -16,9 +18,11 @@ interface Props {
   price: string;
   attributes: any;
   thumbnail: string;
+  type?: string;
 }
 
 export default function Product({
+  id,
   isRated,
   classes,
   shop,
@@ -27,10 +31,11 @@ export default function Product({
   stockStatus,
   averageRating,
   price,
-  attributes,
   isSlider = false,
   thumbnail,
+  type,
 }: Props) {
+  const { addToCart } = useCart();
   return (
     <div
       className={`p-2 rounded-lg hover:shadow-4x ${classes} ${
@@ -73,7 +78,7 @@ export default function Product({
           </a>
         </Link>
         <div className='flex justify-center mt-5 mb-2 text-center'>
-          {price.split(',').length > 1 && attributes ? (
+          {type === 'VARIABLE' ? (
             <Button
               title={
                 stockStatus === 'IN_STOCK' ? 'Choose Products' : 'Read More'
@@ -91,6 +96,15 @@ export default function Product({
                   type='button'
                   size='big'
                   isSlider={isSlider}
+                  onClick={() =>
+                    addToCart({
+                      product_id: id,
+                      image: thumbnail,
+                      name: name,
+                      price: price,
+                      quantity: 1,
+                    })
+                  }
                 />
               ) : (
                 <Button

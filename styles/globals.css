@@ -17,7 +17,7 @@
 @import './components/_slider.css';
 @import './components/_masonaryGrid.css';
 @import './components/_banner.css';
-
+@import './components/_common.css';
 /* category hover animation */
 .cat-anim__scale img {
   transition: transform 10s;
@@ -34,7 +34,6 @@
   -moz-background-clip: text;
   background-clip: text;
 }
-
 
 @media (max-width: 1024px) {
   .inset-text {
@@ -134,8 +133,6 @@ input:checked + div svg {
 }
 /* end */
 
-
-
 .cat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -146,7 +143,7 @@ input:checked + div svg {
   width: 100%;
 }
 .cat-grid > [style^='--aspect-ratio']::before {
-  content: "";
+  content: '';
   display: inline-block;
   width: 1px;
   height: 0;

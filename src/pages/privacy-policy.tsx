@@ -1,37 +1,28 @@
-import React from 'react';
-import type { NextPage } from 'next';
+import React, { Fragment } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { gql } from '@apollo/client';
 import client from '@/config/apollo-client';
+import Seo from '@/components/seo';
 import Layout from '@/components/layout';
-import Summary from '@/components/cart/summary';
-import Total from '@/components/cart/total';
-// import Alert from '@/components/global/alert';
-import { useSiteContext } from '@/context';
 
-const Cart: NextPage = ({
+export default function PrivacyPolicy({
   data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { menu } = data;
-  const { list, removeItem, total, onChangeProductQuantity } = useSiteContext();
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { page, menu } = data;
   return (
-    <Layout menu={menu.menuItems.edges}>
-      <div className='px-4 py-8'>
-        {/* <Alert type='error' text='There is an error' />
-        <Alert type='success' text='Success' /> */}
-        <div className='flex flex-col py-6 lg:flex-row space-y-9 lg:space-y-0 lg:space-x-9'>
-          <Summary
-            list={list}
-            removeItem={removeItem}
-            onChangeProductQuantity={onChangeProductQuantity}
+    <Fragment>
+      <Seo title={page.title} />
+      <Layout menu={menu.menuItems.edges}>
+        <div className='px-4 py-7 mb-7'>
+          <div
+            className='px-8 xs:px-0 entry-content max-w-none font-heading'
+            dangerouslySetInnerHTML={{ __html: page?.content }}
           />
-          <Total total={total} />
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </Fragment>
   );
-};
-
+}
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: gql`
@@ -79,10 +70,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
             }
           }
         }
+        page(id: "privacy-policy", idType: URI) {
+          title
+          slug
+          status
+          content
+        }
       }
     `,
   });
   return { props: { data: data } };
 };
-
-export default Cart;

@@ -29,14 +29,14 @@ const list = [
 
 export default function Instagram() {
   return (
-    <section className='px-4 py-7 mb-7'>
+    <section className='px-4 pt-7'>
       <div className='mb-10 text-center'>
         <Heading title='Follow us on Instagram' />
       </div>
       <div className='grid h-full grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
         {list.map((item, index) => (
           <div
-            className='w-full h-full min-h-[180px] lg:min-h-[200px] xl:min-h-[234px] 2xl:min-h-[320px] 4xl:min-h-[380px]'
+            className='w-full h-full min-h-[180px] lg:min-h-[200px] xl:min-h-[234px] 2xl:min-h-[20vw]'
             key={index}
           >
             <div className='relative w-full h-full'>

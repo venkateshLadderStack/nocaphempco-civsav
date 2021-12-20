@@ -43,6 +43,7 @@ export default function Page({
                   ({ node }: { node: any }, index: number) => (
                     <div key={index} className='mx-auto'>
                       <Product
+                        id={node.databaseId}
                         name={node.name}
                         slug={node.slug}
                         stockStatus={node.stockStatus}

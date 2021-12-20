@@ -9,7 +9,7 @@ const options2 = [
   { value: 'alaska', label: 'Alaska' },
   { value: 'california', label: 'California' },
 ];
-export default function Total() {
+export default function Total({ total }: any) {
   const [show, setShow] = useState(false);
 
   const _toggle = () => {
@@ -20,7 +20,7 @@ export default function Total() {
     <div className='w-full lg:w-2/5'>
       <h1 className='text-3xl font-bold text-mine font-heading'>Cart Total</h1>
       <p className='mt-6 text-base text-mine'>
-        <span className='mr-3 font-bold'>Subtotal</span> $169.98
+        <span className='mr-3 font-bold'>Subtotal</span> ${total?.toFixed(2)}
       </p>
 
       <div className='flex items-center px-3 py-3 mt-2 bg-alabaster'>
@@ -78,10 +78,15 @@ export default function Total() {
       </div>
       <div className='flex items-center p-3 mb-2 bg-alabaster'>
         <p className='w-20 text-base font-bold text-mine'>Total</p>
-        <p className='text-base font-bold text-mine'>$16.98</p>
+        <p className='text-base font-bold text-mine'>${total?.toFixed(2)}</p>
       </div>
       <div className='flex justify-end'>
-        <Button type='button' title='Proceed to checkout' size='small' />
+        <Button
+          type='internalLink'
+          path='/checkout'
+          title='Proceed to checkout'
+          size='small'
+        />
       </div>
     </div>
   );

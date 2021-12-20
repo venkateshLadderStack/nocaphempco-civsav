@@ -8,7 +8,6 @@ import Hero from '@/components/homePage/hero';
 import ProductsSlider from '@/components/global/productsSlider';
 import WholeSale from '@/components/global/banner/wholeSale';
 import Categories from '@/components/homePage/categories/old';
-import LatestProducts from '@/components/homePage/latestProducts';
 import Reviews from '@/components/homePage/reviews';
 import Instagram from '@/components/global/instagram';
 
@@ -51,10 +50,13 @@ const Home: NextPage = ({
       {!error && products.edges.length && (
         <ProductsSlider title='Featured Products' items={products.edges} />
       )}
-      <Categories />
-      {latest.edges.length && <LatestProducts products={latest.edges} />}
-      <Instagram />
+      <Categories isMasonry title='Categories' />
+      {latest.edges.length && (
+        <ProductsSlider title='Latest Products' items={latest.edges} />
+      )}
       <WholeSale />
+      <Categories />
+      <Instagram />
     </Layout>
   );
 };
@@ -75,19 +77,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 path
                 title
                 label
-                childItems(first: 30)  {
+                childItems(first: 30) {
                   edges {
                     node {
                       label
                       title
                       path
-                      childItems(first: 30)  {
+                      childItems(first: 30) {
                         edges {
                           node {
                             label
                             title
                             path
-                            childItems(first: 30)  {
+                            childItems(first: 30) {
                               edges {
                                 node {
                                   label
@@ -120,6 +122,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
               featured
               reviewCount
               slug
+              type
               image {
                 mediaItemUrl
                 sourceUrl
@@ -155,7 +158,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         }
         latest: products(
           where: { status: "publish", orderby: { field: DATE, order: DESC } }
-          first: 20
+          first: 15
         ) {
           edges {
             node {
@@ -163,6 +166,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
               featured
               reviewCount
               slug
+              type
               image {
                 mediaItemUrl
                 sourceUrl

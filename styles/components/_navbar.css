@@ -13,7 +13,7 @@
   display: none !important;
 }
 .parent a {
-  margin: 10px;
+  margin: 5px 10px;
   color: #333;
   text-decoration: none;
   font-size: 14px;
@@ -31,7 +31,7 @@
 }
 .child li {
   background-color: #fff;
-  width: 250px;
+  width: 280px;
   padding: 2px 5px;
   line-height: 15px;
 }
@@ -102,45 +102,51 @@ ul > .parent:hover > .top {
   }
   .parent {
     float: none;
+    margin-bottom: 8px;
   }
+
   .child li {
-    width: auto;
+    margin: 2px 2px;
   }
   li {
     float: none;
   }
   ul ul {
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     border: none;
   }
   .parent > ul {
-    display: block;
+    display: none;
     position: relative;
-    margin-left: 20px;
-    /* z-index: 1000; */
+    margin-left: 5px;
   }
-  .parent > a {
-    font-weight: bold;
+  .top {
+    font-weight: bold !important;
   }
   ul ul ul {
     left: 0;
-    /* top: 0;
-    margin-left: -1px; */
   }
   .parent:hover > ul {
-    display: block;
+    display: none;
     position: relative;
-    /* position: absolute; */
-    /* z-index: 1000; */
   }
   ul > .parent:hover > .top {
     font-weight: bold;
-    color: #f1803e;
+    color: #333;
   }
   .parent li:hover {
     background-color: #fff;
   }
   .parent li:hover > a {
     color: #333;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #side-bar {
+    width: 100%;
+  }
+  .parent {
+    float: none;
+    margin-bottom: 8px;
   }
 }

@@ -13,6 +13,7 @@ export default function SingleProduct({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { product, menu } = data;
+
   return (
     <Layout menu={menu.menuItems.edges}>
       <div className='max-w-[1330px] mx-auto'>
@@ -55,19 +56,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
                 path
                 title
                 label
-                childItems {
+                childItems(first: 30) {
                   edges {
                     node {
                       label
                       title
                       path
-                      childItems {
+                      childItems(first: 30) {
                         edges {
                           node {
                             label
                             title
                             path
-                            childItems {
+                            childItems(first: 30) {
                               edges {
                                 node {
                                   label
@@ -103,17 +104,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           image {
             mediaItemUrl
           }
-          attributes {
-            edges {
-              node {
-                label
-                options
-                id
-                attributeId
-                visible
-              }
-            }
-          }
           productCategories {
             edges {
               node {
@@ -147,6 +137,37 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             stockQuantity
             stockStatus
             price(format: RAW)
+            attributes {
+              edges {
+                node {
+                  label
+                  options
+                  id
+                  attributeId
+                  visible
+                }
+              }
+            }
+            variations(first: 100) {
+              edges {
+                node {
+                  salePrice(format: RAW)
+                  regularPrice(format: RAW)
+                  price
+                  name
+                  link
+                  attributes {
+                    edges {
+                      node {
+                        name
+                        label
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
           ... on SimpleProduct {
             id
@@ -162,6 +183,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
                 featured
                 reviewCount
                 slug
+                type
                 image {
                   mediaItemUrl
                   sourceUrl

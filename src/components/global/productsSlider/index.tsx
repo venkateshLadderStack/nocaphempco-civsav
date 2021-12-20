@@ -84,6 +84,7 @@ export default function ProductsSlider({ title, items }: Props) {
         {items.map(({ node }: { node: any }, index: number) => (
           <div className='px-2 py-7' key={index}>
             <Product
+              id={node.databaseId}
               name={node.name}
               slug={node.slug}
               stockStatus={node.stockStatus}
@@ -93,6 +94,7 @@ export default function ProductsSlider({ title, items }: Props) {
               attributes={node.attributes}
               thumbnail={node.image.mediaItemUrl}
               isSlider
+              type={node.type}
             />
           </div>
         ))}

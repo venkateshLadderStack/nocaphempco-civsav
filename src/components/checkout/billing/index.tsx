@@ -11,7 +11,7 @@ const options = [
 export default function BillingDetail() {
   const [differentAddress, setDifferentAddress] = useState(false);
   return (
-    <>
+    <div className='font-heading'>
       <h3 className='text-2.5xl leading-8 font-bold font-roboto'>
         Billing details
       </h3>
@@ -20,10 +20,10 @@ export default function BillingDetail() {
         <Input lable='Last name *' />
       </div>
       <Input lable='Company name (optional)' />
-      <p className='text-base text-mine font-heading mt-4 mb-1'>
+      <p className='mt-4 mb-1 text-base text-mine font-heading'>
         Country / Region *
       </p>
-      <p className='text-base font-bold text-mine mb-4'>United State (US)</p>
+      <p className='mb-4 text-base font-bold text-mine'>United State (US)</p>
       <Input
         lable='Street address *'
         placeholder='House number and street name'
@@ -39,7 +39,7 @@ export default function BillingDetail() {
       <Input lable='Email address *' />
       {/* checkbox */}
       <input type='checkbox' />
-      <span className='font-heading text-base text-mine'>
+      <span className='text-base font-heading text-mine'>
         &nbsp; Subscribe to our newsletter
       </span>
       <div className='mt-7'>
@@ -58,10 +58,10 @@ export default function BillingDetail() {
             <Input lable='Last name *' />
           </div>
           <Input lable='Company name (optional)' />
-          <p className='text-base text-mine font-heading mt-4 mb-1'>
+          <p className='mt-4 mb-1 text-base text-mine font-heading'>
             Country / Region *
           </p>
-          <p className='text-base font-bold text-mine mb-4'>
+          <p className='mb-4 text-base font-bold text-mine'>
             United State (US)
           </p>
           <Input
@@ -79,7 +79,7 @@ export default function BillingDetail() {
         </div>
       )}
       <p className='text-base text-mine font-heading'>Order notes (optional)</p>
-      <textarea className='bg-input w-full outline-none font-heading focus-within:bg-gray-100 mt-1 p-2'></textarea>
-    </>
+      <textarea className='w-full p-2 mt-1 outline-none bg-input font-heading focus-within:bg-gray-100'></textarea>
+    </div>
   );
 }

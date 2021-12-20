@@ -6,6 +6,7 @@ module.exports = {
       'nocaphempco.com',
       'i2.wp.com',
       'wordpress-700791-2317305.cloudwaysapps.com',
+      'images.unsplash.com',
     ],
     // disableStaticImages: true,
   },

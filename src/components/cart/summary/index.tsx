@@ -2,9 +2,13 @@ import React, { Fragment } from 'react';
 import CartItem from './cartItem';
 import Button from '@/components/global/button';
 
-const list = [1, 2, 3, 4, 5];
+// const list = [1, 2, 3, 4, 5];
 
-export default function Summary() {
+export default function Summary({
+  list,
+  removeItem,
+  onChangeProductQuantity,
+}: any) {
   return (
     <div className='w-full'>
       <h1 className='text-3xl font-bold text-mine font-heading'>
@@ -28,9 +32,15 @@ export default function Summary() {
         </p>
       </div>
       {/* cart items */}
-      {list.map((item, index) => (
-        <Fragment key={item}>
-          <CartItem isBackground={index % 2 === 0 ? false : true} />
+      {list.map((item: any, index: number) => (
+        <Fragment key={index}>
+          <CartItem
+            isBackground={index % 2 === 0 ? false : true}
+            item={item}
+            onChange={onChangeProductQuantity}
+            removeItem={removeItem}
+            index={index}
+          />
         </Fragment>
       ))}
       {/* End */}
@@ -45,7 +55,12 @@ export default function Summary() {
           className={`bg-input outline-none font-heading focus-within:bg-gray-100 leading-5 p-2.5 border-l-2`}
         />
         <Button type='button' title='Apply coupon' size='small' />
-        <Button type='button' title='Continue Shopping' size='small' />
+        <Button
+          type='internalLink'
+          path='/shop'
+          title='Continue Shopping'
+          size='small'
+        />
       </div>
     </div>
   );
