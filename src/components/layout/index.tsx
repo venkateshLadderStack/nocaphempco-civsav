@@ -11,7 +11,7 @@ export default function Layout({
   return (
     <Fragment>
       <Navbar />
-      <main className='pt-18 lg:pt-36'>{children}</main>
+      <main>{children}</main>
       <Footer />
     </Fragment>
   );

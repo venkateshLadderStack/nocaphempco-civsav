@@ -10,7 +10,7 @@ import Form from '@/components/wholeSale/form';
 const WholeSaleDelta: NextPage = () => {
   return (
     <Layout>
-      <div className='overflow-hidden py-7'>
+      <div className='overflow-hidden pb-7 pt-24 lg:pt-36'>
         <Hero />
         <Title />
         <Detail />

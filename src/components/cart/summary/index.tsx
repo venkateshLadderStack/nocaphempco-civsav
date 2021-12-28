@@ -3,20 +3,19 @@ import CartItem from './cartItem';
 import Button from '@/components/global/button';
 import Alert from '@/components/global/alert';
 
-// const list = [1, 2, 3, 4, 5];
+const Summary = ({ list, removeItem, onChangeProductQuantity, free }: any) => {
+  // console.log(
+  //   'Dalta 8',
+  //   list.find((i) => i.name.toLowerCase().includes('delta 8'))
+  // );
 
-export default function Summary({
-  list,
-  removeItem,
-  onChangeProductQuantity,
-}: any) {
   return (
     <div className='w-full'>
-      <h1 className='text-3xl font-bold text-mine font-heading mb-4'>
+      <h1 className='mb-4 text-3xl font-bold text-mine font-heading'>
         Cart Summary
       </h1>
       <div className='flex items-center py-3 bg-input'>
-        <p className='w-3/5 pl-3 text-base font-bold text-center font-heading text-mine'>
+        <p className='w-3/6 pl-3 text-base font-bold text-center xs:w-3/5 font-heading text-mine'>
           Product
         </p>
         <p className='w-40 pl-3 text-base font-bold text-center xs:w-20 font-heading text-mine xs:hidden'>
@@ -28,6 +27,7 @@ export default function Summary({
         <p className='w-40 pl-3 text-base font-bold text-center xs:w-20 font-heading text-mine'>
           Subtotal
         </p>
+        <p className='hidden w-10 xs:block'></p>
       </div>
       {/* cart items */}
       {list.map((item: any, index: number) => (
@@ -43,7 +43,7 @@ export default function Summary({
       ))}
       {/* End */}
       <div
-        className={`flex xs:flex-col xs:items-start items-center py-2 xs:space-x-0 xs:pl-2 xs:space-y-3 space-x-2 ${
+        className={`flex flex-col sm:flex-row items-start sm:items-center py-2 space-x-0 pl-2 sm:pl-0 space-y-3 sm:space-y-0 sm:space-x-2 ${
           list.length % 2 !== 0 ? 'bg-alabaster' : 'bg-white'
         }`}
       >
@@ -61,12 +61,18 @@ export default function Summary({
         />
       </div>
       <p className='mt-4 mb-4 text-2xl font-medium text-mine font-heading'>
-        Congratulations, your order qualifies for free shipping!
+        {free < 50
+          ? `Add $${free?.toFixed(2)} to qualify for free shipping!`
+          : 'Congratulations, your order qualifies for free shipping!'}
       </p>
-      <Alert
-        type='error'
-        text='We do not ship Delta 8 products to Alaska, Arizona, Arkansas, Colorado, Delaware, Idaho, Kentucky, Mississippi, Montana, New York, Oregon, Rhode Island, Utah, Washington, or Vermont. Your order will be CANCELED if you try to order from these states.'
-      />
+      {list.find((i: any) => i.name.toLowerCase().includes('delta 8')) && (
+        <Alert
+          type='error'
+          text='We do not ship Delta 8 products to Alaska, Arizona, Arkansas, Colorado, Delaware, Idaho, Kentucky, Mississippi, Montana, New York, Oregon, Rhode Island, Utah, Washington, or Vermont. Your order will be CANCELED if you try to order from these states.'
+        />
+      )}
     </div>
   );
-}
+};
+
+export default Summary;

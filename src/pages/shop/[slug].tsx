@@ -1,4 +1,4 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType, GetStaticPaths } from 'next';
 import React, { Fragment, useEffect, useState } from 'react';
 import { gql } from '@apollo/client';
 import client from '@/config/apollo-client';
@@ -10,7 +10,7 @@ import BreadCrumb from '@/components/global/breadcrumb';
 
 export default function ShopPages({
   data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { page } = data;
 
   const [topContent, setTopContent] = useState('');
@@ -65,68 +65,106 @@ export default function ShopPages({
     <Fragment>
       {/* <Seo title={page.title} /> */}
       <Layout>
-        <div className='px-4 mb-7'>
-          <BreadCrumb
-            pageList={[{ label: 'shop', path: '/shop' }]}
-            currentPageLabel={pageTitle}
-          />
-        </div>
-        <div className='px-4 py-7 mb-7'>
-          <div
-            className='px-8 xs:px-0 entry-content max-w-none font-heading shop-panel'
-            dangerouslySetInnerHTML={{ __html: topContent }}
-          />
-        </div>
-        <div className='pb-14'>
-          {page.productCategory.productsCategory &&
-            page.productCategory.productsCategory.products.edges.length && (
-              <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5'>
-                {page.productCategory.productsCategory.products.edges.map(
-                  ({ node }: { node: any }, index: number) => (
-                    <div key={index} className='mx-auto'>
-                      <Product
-                        id={node.databaseId}
-                        name={node.name}
-                        slug={node.slug}
-                        stockStatus={node.stockStatus}
-                        isRated={node.reviewCount > 0}
-                        averageRating={node.reviews.averageRating}
-                        price={node.price}
-                        attributes={node.attributes}
-                        thumbnail={node.image.mediaItemUrl}
-                        isSlider
-                        type={node.type}
-                      />
-                    </div>
-                  )
-                )}
-              </div>
-            )}
-        </div>
-        <div className='px-4 py-7 mb-7'>
-          {remainingContent?.map((item: any) => (
-            <div
-              key={item}
-              className='px-8 xs:px-0 entry-content max-w-none font-heading shop-panel'
-              dangerouslySetInnerHTML={{ __html: item }}
+        <div className='pt-24 lg:pt-36'>
+          <div className='px-4 mb-7'>
+            <BreadCrumb
+              pageList={[{ label: 'shop', path: '/shop' }]}
+              currentPageLabel={pageTitle}
             />
-          ))}
-        </div>
-        <div className='px-4 py-7 mb-7'>
-          <div className='max-w-[60%] mx-auto'>
-            <div className='mb-10 text-center'>
-              <h2 className='text-[32px] leading-[34px] font-bold font-heading'>
-                {sectionTitle}
-              </h2>
+          </div>
+          <div className='pb-14 md:hidden'>
+            {page.productCategory.productsCategory &&
+              page.productCategory.productsCategory.products.edges.length && (
+                <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5'>
+                  {page.productCategory.productsCategory.products.edges.map(
+                    ({ node }: { node: any }, index: number) => (
+                      <div key={index} className='mx-auto'>
+                        <Product
+                          id={node.databaseId}
+                          name={node.name}
+                          slug={node.slug}
+                          stockStatus={node.stockStatus}
+                          isRated={node.reviewCount > 0}
+                          averageRating={node.reviews.averageRating}
+                          price={node.price}
+                          attributes={node.attributes}
+                          thumbnail={node.image.mediaItemUrl}
+                          isSlider
+                          type={node.type}
+                          shippingClass={
+                            node.shippingClasses?.edges[0]?.node.slug
+                          }
+                          taxClass={node.taxClass}
+                          taxtStatus={node.taxStatus}
+                        />
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
+          </div>
+          <div className='px-4 py-7 mb-7'>
+            <div
+              className='px-8 xs:px-0 entry-content max-w-none font-heading shop-panel'
+              dangerouslySetInnerHTML={{ __html: topContent }}
+            />
+          </div>
+          <div className='hidden pb-14 md:block'>
+            {page.productCategory.productsCategory &&
+              page.productCategory.productsCategory.products.edges.length && (
+                <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5'>
+                  {page.productCategory.productsCategory.products.edges.map(
+                    ({ node }: { node: any }, index: number) => (
+                      <div key={index} className='mx-auto'>
+                        <Product
+                          id={node.databaseId}
+                          name={node.name}
+                          slug={node.slug}
+                          stockStatus={node.stockStatus}
+                          isRated={node.reviewCount > 0}
+                          averageRating={node.reviews.averageRating}
+                          price={node.price}
+                          attributes={node.attributes}
+                          thumbnail={node.image.mediaItemUrl}
+                          isSlider
+                          type={node.type}
+                          shippingClass={
+                            node.shippingClasses?.edges[0]?.node.slug
+                          }
+                          taxClass={node.taxClass}
+                          taxtStatus={node.taxStatus}
+                        />
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
+          </div>
+          <div className='px-4 py-7 mb-7'>
+            {remainingContent?.map((item: any) => (
+              <div
+                key={item}
+                className='px-8 xs:px-0 entry-content max-w-none font-heading shop-panel'
+                dangerouslySetInnerHTML={{ __html: item }}
+              />
+            ))}
+          </div>
+          <div className='px-4 py-7 mb-7'>
+            <div className='max-w-[60%] mx-auto'>
+              <div className='mb-10 text-center'>
+                <h2 className='text-[32px] leading-[34px] font-bold font-heading'>
+                  {sectionTitle}
+                </h2>
+              </div>
+              <Accordion titles={accordTitle} content={accordContent} />
             </div>
-            <Accordion titles={accordTitle} content={accordContent} />
           </div>
         </div>
       </Layout>
     </Fragment>
   );
 }
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = `/shop/${params?.slug}`;
   const { data } = await client.query({
     query: gql`
@@ -160,15 +198,27 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
                     reviews {
                       averageRating
                     }
+                    shippingClasses {
+                      edges {
+                        node {
+                          name
+                          slug
+                        }
+                      }
+                    }
                     ... on VariableProduct {
                       stockQuantity
                       stockStatus
                       price(format: RAW)
+                      taxStatus
+                      taxClass
                     }
                     ... on SimpleProduct {
                       stockQuantity
                       stockStatus
                       price(format: RAW)
+                      taxStatus
+                      taxClass
                     }
                     attributes {
                       edges {
@@ -193,5 +243,33 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       slug,
     },
   });
-  return { props: { data: data } };
+  return { props: { data: data }, revalidate: 10 };
+};
+
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  const pages = [
+    'cbd-accessories-for-sale',
+    'cbd-capsules-for-sale',
+    'cbd-concentrates-for-sale',
+    'cbd-gummies-for-sale',
+    'cbd-hemp-flower-for-sale',
+    'cbd-joints-for-sale',
+    'cbd-kief-joints-for-sale',
+    'cbd-moon-rocks-for-sale',
+    'cbd-pet-tinctures-for-sale',
+    'cbd-tincture-for-sale',
+    'cbd-topicals-for-sale',
+    'cbd-vaporizers-for-sale',
+    'cbg-products-for-sale',
+    'delta-8-thc-products-for-sale',
+  ];
+
+  const paths = pages.map((item: string) => ({
+    params: { slug: item },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking', //indicates the type of fallback
+  };
 };

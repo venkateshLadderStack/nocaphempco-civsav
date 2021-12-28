@@ -3,9 +3,12 @@ import Image from 'next/image';
 import Heading from '@/components/global/heading';
 import Button from '@/components/global/button';
 
-import Category1 from '@/assets/images/category_1.png';
-import Category2 from '@/assets/images/category_2.png';
-import Category3 from '@/assets/images/category_3.png';
+import HempFlower from '@/assets/images/cat-hemp-flower.jpg';
+import MoonRocks from '@/assets/images/cat-moon-rocks.jpg';
+import Joints from '@/assets/images/cat-joints.jpg';
+import KeifBlunts from '@/assets/images/cat-kief-blunts.jpg';
+import Concentrates from '@/assets/images/cat-concentrates.jpg';
+import Gummies from '@/assets/images/cat-gummies.jpg';
 
 import Instagram1 from '@/assets/images/instagram_1.png';
 import Instagram2 from '@/assets/images/instagram_2.png';
@@ -19,32 +22,32 @@ import Instagram10 from '@/assets/images/instagram_10.png';
 
 const list1 = [
   {
-    img: Instagram1,
+    img: HempFlower,
     name: 'Hemp Flower',
     slug: '/shop/cbd-hemp-flower-for-sale',
   },
   {
-    img: Instagram2,
+    img: MoonRocks,
     name: 'Moon Rocks',
     slug: '/shop/cbd-moon-rocks-for-sale',
   },
   {
-    img: Instagram3,
+    img: Joints,
     name: 'Joints',
     slug: '/shop/cbd-joints-for-sale',
   },
   {
-    img: Instagram4,
+    img: KeifBlunts,
     name: 'Kief Blunts',
     slug: '/shop/cbd-kief-joints-for-sale',
   },
   {
-    img: Instagram5,
+    img: Concentrates,
     name: 'Concentrates',
     slug: '/shop/cbd-concentrates-for-sale',
   },
   {
-    img: Instagram6,
+    img: Gummies,
     name: 'Gummies',
     slug: '/shop/cbd-gummies-for-sale',
   },
@@ -72,28 +75,28 @@ const list1 = [
 
 const list = [
   {
-    img: Category1,
+    img: Instagram2,
     name: 'Delta 8',
     slug: '/shop/delta-8-thc-products-for-sale',
   },
   {
-    img: Category2,
+    img: Instagram3,
     name: 'CBD',
     slug: '/shop',
   },
   {
-    img: Category3,
+    img: Instagram4,
     name: 'CBG',
     slug: '/shop/cbg-products-for-sale',
   },
   {
-    img: Category1,
+    img: Instagram5,
     name: 'HHC',
     slug: '/',
   },
   {
-    img: Category2,
-    name: 'Live Suga',
+    img: Instagram6,
+    name: 'Live Sugar',
     slug: '/',
   },
 ];
@@ -123,8 +126,8 @@ export default function Categories({ isMasonry = false, title }: Props) {
                 layout='fill'
                 objectFit='cover'
               />
-              <div className='absolute flex items-end justify-end w-full h-full p-7'>
-                <div className='bottom-0 flex flex-col items-end'>
+              <div className='absolute flex items-end justify-start w-full h-full p-7'>
+                <div className='bottom-0 flex flex-col items-start'>
                   <h4 className='mb-3 text-4xl font-bold text-white font-ubuntu'>
                     {i.name}
                   </h4>
@@ -148,8 +151,8 @@ export default function Categories({ isMasonry = false, title }: Props) {
             >
               <div className='relative w-full h-full'>
                 <Image src={item.img} layout='fill' alt='instagram' />
-                <div className='absolute flex items-end justify-end w-full h-full p-7'>
-                  <div className='bottom-0 flex flex-col items-end'>
+                <div className='absolute flex items-end justify-center w-full h-full p-7'>
+                  <div className='bottom-0 flex flex-col items-center'>
                     <h4 className='mb-3 text-3xl font-bold text-white md:text-4xl font-ubuntu'>
                       {item.name}
                     </h4>

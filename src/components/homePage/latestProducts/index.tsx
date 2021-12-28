@@ -28,6 +28,9 @@ export default function LatestProducts({ products }: Props) {
                   attributes={node.attributes}
                   thumbnail={node.image.mediaItemUrl}
                   isSlider
+                  shippingClass={node.shippingClasses?.edges[0]?.node.slug}
+                  taxClass={node.taxClass}
+                  taxtStatus={node.taxStatus}
                 />
               </div>
             ))}

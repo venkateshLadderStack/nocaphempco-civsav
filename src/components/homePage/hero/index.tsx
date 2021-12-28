@@ -2,8 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import Slide from './slide';
-import SlideOneLeftImage from '@/assets/images/slider/Rosin-Got-That-Drip.png';
-import SlideOneRightImage from '@/assets/images/slider/Rosin.png';
+import ComingSoon from './comingSoon';
+// import SlideOneLeftImage from '@/assets/images/slider/Rosin-Got-That-Drip.png';
+// import SlideOneRightImage from '@/assets/images/slider/Rosin.png';
 import SlideTwoLeftImage from '@/assets/images/slider/The-Greatest-Delta-8-THC-Vape-Carts.png';
 import SlideTwoRightImage from '@/assets/images/slider/No-Cap-Hemp-Co-Delta-8-Cartridges.png';
 import SlideThreeLeftImage from '@/assets/images/slider/Flower-Power-Lab-Tested-Indoor-Grown-Ultra-Premium-CBD-Flower.png';
@@ -40,14 +41,15 @@ const settings = {
 
 export default function Hero() {
   return (
-    <section className='w-full h-full px-0 mb-0 lg:px-4'>
+    <section className='w-full h-full px-0 mb-0'>
       <Slider {...settings}>
-        <Slide
+        <ComingSoon />
+        {/* <Slide
           bgClass='slide-1'
           leftImage={SlideOneLeftImage}
           rightImage={SlideOneRightImage}
           path='/product/delta-8-thc-sugar-rosin/'
-        />
+        /> */}
         <Slide
           bgClass='slide-2'
           leftImage={SlideTwoLeftImage}

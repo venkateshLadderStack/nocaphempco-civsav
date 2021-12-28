@@ -8,6 +8,8 @@ interface Props {
   size: 'small' | 'big';
   href?: string;
   path?: any;
+  id?: string;
+  disable?: boolean;
   isSlider?: boolean;
   onClick?: () => void;
 }
@@ -18,8 +20,11 @@ export default function Button({
   title,
   size,
   href,
+  id,
+  disable = false,
   path = '/',
   isSlider = false,
+
   onClick,
 }: Props) {
   return (
@@ -27,8 +32,10 @@ export default function Button({
       {type === 'button' ? (
         <button
           type='button'
+          id={id}
           className='p-[2px] bg-btn-border rounded-full max-w-max shadow-drop'
           onClick={onClick}
+          disabled={disable}
         >
           {isSlider ? (
             <div

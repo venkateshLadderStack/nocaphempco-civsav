@@ -348,7 +348,7 @@ export const menu = [
         ],
       },
       {
-        label: 'Pre-Rol',
+        label: 'Pre-Roll',
         path: '',
         childItems: [
           {

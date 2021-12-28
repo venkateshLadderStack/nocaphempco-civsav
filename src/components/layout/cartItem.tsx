@@ -10,7 +10,7 @@ interface Props {
 export default function CartItem({ item, isBackground, removeItem }: Props) {
   return (
     <div
-      className={`flex py-1 items-center ${
+      className={`flex py-1 items-center justify-between ${
         isBackground ? 'bg-alabaster' : 'bg-white'
       }`}
     >

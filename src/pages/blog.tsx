@@ -20,25 +20,27 @@ const Blog: NextPage = ({
   const { posts } = data;
   return (
     <Layout>
-      <div className='px-4'>
-        <BreadCrumb currentPageLabel='Blog' />
-      </div>
-      <div className='px-4 py-14'>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className='nocaphemp-masonry-grid'
-          columnClassName='nocaphemp-masonry-grid_column'
-        >
-          {posts.edges.map(({ node }: { node: any }) => (
-            <BlogPost
-              title={node.title}
-              thumbnail={node.featuredImage.node.mediaItemUrl}
-              slug={node.slug}
-              excerpt={node.excerpt}
-              key={node.title}
-            />
-          ))}
-        </Masonry>
+      <div className='pt-24 lg:pt-36'>
+        <div className='px-4'>
+          <BreadCrumb currentPageLabel='Blog' />
+        </div>
+        <div className='px-4 py-14'>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className='nocaphemp-masonry-grid'
+            columnClassName='nocaphemp-masonry-grid_column'
+          >
+            {posts.edges.map(({ node }: { node: any }) => (
+              <BlogPost
+                title={node.title}
+                thumbnail={node.featuredImage.node.mediaItemUrl}
+                slug={node.slug}
+                excerpt={node.excerpt}
+                key={node.title}
+              />
+            ))}
+          </Masonry>
+        </div>
       </div>
     </Layout>
   );

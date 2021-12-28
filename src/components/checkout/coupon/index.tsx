@@ -14,15 +14,15 @@ export default function Coupon() {
           Have a coupon?&nbsp;&nbsp;
           <span
             onClick={_toggle}
-            className='pb-1 border-b border-white border-opacity-50 cursor-pointer hover:border-opacity-100 hover:border-b-2'
+            className='pb-1 border-b border-white border-opacity-50 cursor-pointer xs:max-w-max xs:block hover:border-opacity-100 hover:border-b-2'
           >
             Click here to enter your code
           </span>
         </p>
       </div>
       <div
-        className={`overflow-hidden h-auto mt-11 collapse ${
-          show ? 'max-h-24' : 'max-h-0'
+        className={`overflow-hidden h-auto mt-8 mb-6 collapse ${
+          show ? 'max-h-32' : 'max-h-0'
         }`}
       >
         <p className='text-base text-mine'>

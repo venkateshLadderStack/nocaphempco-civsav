@@ -1,3 +1,24 @@
 .inner-shadow:hover {
   box-shadow: inset 0 -4px rgb(0 0 0 / 20%);
 }
+
+.ig-instagram-link img,
+.ig-instagram-link video {
+  min-height: 250px;
+  max-height: 250px;
+}
+.ig-instagram-link ._3xnQP {
+  z-index: 0;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  ._2R-kh ._wPDyp {
+    flex: 0 0 calc(100% / 4 - 10px);
+  }
+}
+@media (max-width: 480px) {
+  .ig-instagram-link img,
+  .ig-instagram-link video {
+    min-height: 170px;
+    max-height: 170px;
+  }
+}

@@ -95,6 +95,9 @@ export default function ProductsSlider({ items }: Props) {
               thumbnail={node.image.mediaItemUrl}
               isSlider
               type={node.type}
+              shippingClass={node.shippingClasses?.edges[0]?.node.slug}
+              taxClass={node.taxClass}
+              taxtStatus={node.taxStatus}
             />
           </div>
         ))}

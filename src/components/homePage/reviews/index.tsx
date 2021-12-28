@@ -91,7 +91,7 @@ export default function Reviews() {
     };
   }, []);
   return (
-    <section className='w-full h-full mb-14 lg:px-4 '>
+    <section className='w-full h-full mb-14'>
       <div className='pt-8 pb-16 bg-banner'>
         <div className=' text-xl leading-8 md:text-3xl lg:text-[40px] lg:leading-[60px] text-center font-heading mb-8 font-medium pl-2 pr-10 sm:pl-8 md:pl-0 xs:px-0'>
           {/* Real Reviews From Real Customers */}

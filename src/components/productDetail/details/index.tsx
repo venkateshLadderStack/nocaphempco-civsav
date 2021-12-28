@@ -141,6 +141,9 @@ export default function Detail({ product }: Props) {
         name: product.name,
         price: price,
         quantity: qty,
+        shipping: product.shippingClasses?.edges[0]?.node.slug,
+        taxClass: product.taxClass,
+        taxtStatus: product.taxStatus,
       };
       addToCart(final);
     } else {
@@ -152,6 +155,9 @@ export default function Detail({ product }: Props) {
           price: selectedPrice,
           attributes: selectedAttr,
           quantity: qty,
+          shipping: product.shippingClasses?.edges[0]?.node.slug,
+          taxClass: product.taxClass,
+          taxtStatus: product.taxStatus,
         };
         addToCart(final);
       } else {

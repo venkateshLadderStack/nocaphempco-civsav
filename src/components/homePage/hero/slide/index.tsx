@@ -15,18 +15,18 @@ export default function Slide({ bgClass, leftImage, rightImage, path }: Props) {
   const handleResize = () => {
     if (window !== undefined) {
       const windowHeight = window.innerHeight;
-      if (window.innerWidth < 480) {
-        setSlideHeight(windowHeight - 80);
-      } else {
+      if (window.innerWidth < 1792) {
         setSlideHeight(windowHeight);
+      } else {
+        setSlideHeight(windowHeight - 120);
       }
     }
   };
   useEffect(() => {
-    if (window.innerWidth < 480) {
-      setSlideHeight(window.innerHeight - 80);
-    } else {
+    if (window.innerWidth < 1792) {
       setSlideHeight(window.innerHeight);
+    } else {
+      setSlideHeight(window.innerHeight - 120);
     }
     window.addEventListener('resize', handleResize);
 

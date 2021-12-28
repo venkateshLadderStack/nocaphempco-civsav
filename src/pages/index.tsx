@@ -1,20 +1,24 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import dynamic from 'next/dynamic';
 import { gql } from '@apollo/client';
 import client from '@/config/apollo-client';
 import Layout from '@/components/layout';
 import Hero from '@/components/homePage/hero';
 import ProductsSlider from '@/components/global/productsSlider';
 import WholeSale from '@/components/global/banner/wholeSale';
-import Categories from '@/components/homePage/categories';
 import Reviews from '@/components/homePage/reviews';
 import Instagram from '@/components/global/instagram';
+
+const Categories = dynamic(() => import('@/components/homePage/categories'), {
+  ssr: false,
+});
 
 const Home: NextPage = ({
   data,
   error,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { products, latest } = data;
 
   useEffect(() => {
@@ -61,7 +65,7 @@ const Home: NextPage = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data, error } = await client.query({
     query: gql`
       query {
@@ -89,15 +93,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
               reviews {
                 averageRating
               }
+              shippingClasses {
+                edges {
+                  node {
+                    name
+                    slug
+                  }
+                }
+              }
               ... on VariableProduct {
                 stockQuantity
                 stockStatus
                 price(format: RAW)
+                taxStatus
+                taxClass
               }
               ... on SimpleProduct {
                 stockQuantity
                 stockStatus
                 price(format: RAW)
+                taxStatus
+                taxClass
               }
               attributes {
                 edges {
@@ -133,15 +149,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
               reviews {
                 averageRating
               }
+              shippingClasses {
+                edges {
+                  node {
+                    name
+                    slug
+                  }
+                }
+              }
               ... on VariableProduct {
                 stockQuantity
                 stockStatus
                 price(format: RAW)
+                taxStatus
+                taxClass
               }
               ... on SimpleProduct {
                 stockQuantity
                 stockStatus
                 price(format: RAW)
+                taxStatus
+                taxClass
               }
               attributes {
                 edges {

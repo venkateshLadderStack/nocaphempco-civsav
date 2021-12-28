@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import { Toaster } from 'react-hot-toast';
+import { ApolloProvider } from '@apollo/client';
 import '../../styles/globals.css';
 // Import Slider styles
 import 'slick-carousel/slick/slick.css';
@@ -14,6 +15,7 @@ import 'react-bnb-gallery/dist/style.css';
 import 'nprogress/nprogress.css'; //styles of nprogress
 import { ContextProvider } from '../context';
 
+import client from '@/config/apollo-client';
 import AgePopup from '@/components/popups/age';
 import EmailSubscribe from '@/components/popups/emailSubscribe';
 
@@ -45,12 +47,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   return (
-    <ContextProvider>
-      <Component {...pageProps} />
-      {show && <EmailSubscribe close={handlePopup} />}
-      <AgePopup />
-      <Toaster />
-    </ContextProvider>
+    <ApolloProvider client={client}>
+      <ContextProvider>
+        <Component {...pageProps} />
+        {show && <EmailSubscribe close={handlePopup} />}
+        <AgePopup />
+        <Toaster />
+      </ContextProvider>
+    </ApolloProvider>
   );
 }
 

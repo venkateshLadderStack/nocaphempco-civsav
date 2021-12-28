@@ -6,7 +6,7 @@ import Button from '@/components/global/button';
 const WholeSale: NextPage = () => {
   return (
     <Layout>
-      <div className='flex flex-col items-center justify-center px-4 py-8'>
+      <div className='flex flex-col items-center justify-center px-4 pb-8 pt-24 lg:pt-36'>
         <h1 className='text-4.5xl font-extrabold text-mine mb-2'>
           Interested in our wholesale catalog?
         </h1>

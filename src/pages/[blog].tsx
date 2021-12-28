@@ -11,17 +11,19 @@ const SingleBlog: NextPage = ({
   const { post } = data;
   return (
     <Layout>
-      <div className='px-4 md:px-20 mb-7'>
-        <BreadCrumb
-          pageList={[{ label: 'blog', path: '/blog' }]}
-          currentPageLabel={post.title}
-        />
-      </div>
-      <div className='px-4 md:px-24 py-14'>
-        <div
-          className='entry-content font-heading blog-content'
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        ></div>
+      <div className='pt-24 lg:pt-36'>
+        <div className='px-4 md:px-20'>
+          <BreadCrumb
+            pageList={[{ label: 'blog', path: '/blog' }]}
+            currentPageLabel={post.title}
+          />
+        </div>
+        <div className='px-4 md:px-24 py-14'>
+          <div
+            className='entry-content font-heading blog-content'
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
+        </div>
       </div>
     </Layout>
   );
@@ -48,7 +50,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       slug,
     },
   });
-  return { props: { data: data, error: error || null }, revalidate: 60 };
+  return { props: { data: data, error: error || null }, revalidate: 10 };
 };
 
 export const getStaticPaths: GetStaticPaths<{ blog: string }> = async () => {
@@ -71,7 +73,7 @@ export const getStaticPaths: GetStaticPaths<{ blog: string }> = async () => {
   }));
 
   return {
-    paths, //indicates that no page needs be created at build time
+    paths,
     fallback: 'blocking', //indicates the type of fallback
   };
 };

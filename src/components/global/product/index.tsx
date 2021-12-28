@@ -19,6 +19,9 @@ interface Props {
   attributes: any;
   thumbnail: string;
   type?: string;
+  shippingClass: string;
+  taxClass: string;
+  taxtStatus: string;
 }
 
 export default function Product({
@@ -34,6 +37,9 @@ export default function Product({
   isSlider = false,
   thumbnail,
   type,
+  shippingClass,
+  taxClass,
+  taxtStatus,
 }: Props) {
   const { addToCart } = useCart();
   return (
@@ -103,6 +109,9 @@ export default function Product({
                       name: name,
                       price: price,
                       quantity: 1,
+                      shipping: shippingClass,
+                      taxClass,
+                      taxtStatus,
                     })
                   }
                 />
