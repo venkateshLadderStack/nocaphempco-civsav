@@ -16,7 +16,6 @@ export default function Input({
   lable,
   type,
   placeholder,
-  isValid = null,
   value,
   name,
   onChange,

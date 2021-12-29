@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Button from '@/components/global/button';
 import Input from '@/components/global/input';
 
 // const renderAttributes = (value: any) => {
@@ -27,10 +26,8 @@ export default function OrderDetail({
   free,
   tax,
   shippingType,
-  loading,
   setShippingType,
   shippingClass,
-  onClick,
 }: any) {
   const [localTotal, setLocalTotal] = useState(0);
 

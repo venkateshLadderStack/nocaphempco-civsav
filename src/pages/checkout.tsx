@@ -8,7 +8,6 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import client from '@/config/apollo-client';
 import Layout from '@/components/layout';
-import Coupon from '@/components/checkout/coupon';
 import BillingDetail from '@/components/checkout/billing';
 import OrderDetail from '@/components/checkout/orderDetail';
 import BreadCrumb from '@/components/global/breadcrumb';

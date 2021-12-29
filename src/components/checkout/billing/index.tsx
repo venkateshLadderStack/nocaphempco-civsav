@@ -15,17 +15,9 @@ export default function BillingDetail({
   loading,
   onClick,
 }: any) {
-  const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      borderColor: 'black',
-    }),
-  };
-
   const [differentAddress, setDifferentAddress] = useState(false);
 
   const [state, setState] = useState(shippingObject.state);
-  const [countryState, setCountryState] = useState(null);
   const [city, setCity] = useState<any>({
     value: shippingObject.city,
     isValid: shippingObject.city === '' ? null : true,
@@ -262,12 +254,11 @@ export default function BillingDetail({
         <div className='flex-1 border border-transparent rounded-md'>
           <Select
             options={country}
-            value={countryState}
-            onChange={(value) => setCountryState(value)}
+            value={{ value: 'unitedStates', label: 'United States (US)' }}
             placeholder='Country'
             defaultInputValue='United States'
             styles={{
-              control: (base, state) => ({
+              control: (base: any, state) => ({
                 ...base,
                 '&:hover': {
                   border: '2px solid',
@@ -290,7 +281,7 @@ export default function BillingDetail({
             onChange={handleStates}
             placeholder='State'
             styles={{
-              control: (base, state) => ({
+              control: (base: object, state) => ({
                 ...base,
                 '&:hover': {
                   border: '2px solid',
