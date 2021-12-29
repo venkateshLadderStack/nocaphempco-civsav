@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '@/components/global/button';
 
 // const renderAttributes = (value: any) => {
@@ -70,42 +71,44 @@ export default function OrderDetail({
 
   return (
     <div className='mt-8 md:mt-0 font-heading'>
-      <h3 className='text-2.5xl leading-8 font-bold font-roboto mb-7'>
+      <h3 className='text-2xl leading-8 font-bold font-roboto mb-7'>
         Your order
       </h3>
-      <div className='flex items-center py-3 bg-input'>
+      {/* <div className='flex items-center py-3 bg-input'>
         <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
           Product
         </p>
         <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
           Subtotal
         </p>
-      </div>
-      {list.map((i: any, index: number) => {
+      </div> */}
+      {list.map((item: any, index: number) => {
         return (
-          <div className='flex items-center py-3 bg-white' key={index}>
-            <p className='w-full pl-3 text-base font-heading text-mine'>
-              {i.name} × <span className='font-bold'>{i.quantity}</span>
-            </p>
-            <p className='w-full pl-3 text-base font-heading text-mine'>
-              $ {i.price * i.quantity}
-            </p>
+          <div className='flex flex-row items-center' key={index}>
+            <div className='w-30 relative'>
+              <Image
+                src={item?.image}
+                alt=''
+                layout='fixed'
+                width={100}
+                height={100}
+              />
+              <div className='notification_badge'>{item?.quantity}</div>
+            </div>
+            <div className='pl-4 flex-1'>{item?.name}</div>
+            <div className='pl-4 w-20'>${item?.price}</div>
           </div>
         );
       })}
-
-      <div className='flex items-center py-3 bg-white'>
-        <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
+      <hr className='mb-4' />
+      <div className='flex items-center py-3'>
+        <p className='w-full  pl-3 text-base font-light font-heading text-mine '>
           Subtotal
         </p>
-        <p className='w-full pl-3 text-base font-heading text-mine'>
-          $ {total}
-        </p>
+        <p className='w-full pl-3 text-base font-heading text-mine'>${total}</p>
       </div>
-      <div className='flex items-center py-3 bg-input'>
-        <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
-          Shipping
-        </p>
+      <div className='flex items-center py-3'>
+        <p className='w-full pl-3 text-base font-heading text-mine'>Shipping</p>
         <div className='w-full'>
           {free > 50 && (
             <div>
@@ -153,18 +156,14 @@ export default function OrderDetail({
           </div>
         </div>
       </div>
-      <div className='flex items-center py-3 bg-white'>
-        <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
-          Tax
-        </p>
-        <p className='w-full pl-3 text-base font-heading text-mine'>
+      <div className='flex items-center py-3'>
+        <p className='w-full pl-3 text-base  font-heading text-mine'>Tax</p>
+        <p className='w-full pl-3 text-base  font-heading text-mine'>
           ${tax.toFixed(2)}
         </p>
       </div>
-      <div className='flex items-center py-3 bg-input'>
-        <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
-          Total
-        </p>
+      <div className='flex items-center py-3'>
+        <p className='w-full pl-3 text-base font-heading text-mine'>Total</p>
         <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
           ${localTotal.toFixed(2)}
         </p>

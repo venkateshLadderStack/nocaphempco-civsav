@@ -156,50 +156,77 @@ export default function BillingDetail({
 
   return (
     <div className='font-heading'>
-      <h3 className='text-2.5xl leading-8 font-bold font-roboto'>
-        Billing details
+      <h3 className='text-2xl leading-8 font-light font-roboto'>
+        Contact Information
       </h3>
-      <div className='flex justify-between space-x-6'>
+      <div className='flex justify-between space-x-4'>
         <Input
-          type='text'
-          lable='First name *'
-          name='firstName'
-          value={detail.firstName.value}
-          isValid={detail.firstName.isValid}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <Input
-          lable='Last name *'
-          type='text'
-          name='lastName'
-          value={detail.lastName.value}
-          isValid={detail.lastName.isValid}
+          placeholder='Email address'
+          type='email'
+          name='email'
+          value={detail.email.value}
+          isValid={detail.email.isValid}
           onBlur={handleBlur}
           onChange={handleChange}
         />
       </div>
-      <Input
-        lable='Company name (optional)'
-        name='company'
-        value={detail.company.value}
-        onChange={handleChange}
-      />
-      <p className='mt-4 mb-1 text-base text-mine font-heading'>
-        Country / Region *
-      </p>
-      <p className='mb-4 text-base font-bold text-mine'>United States (US)</p>
-      <Input
-        lable='Street address *'
-        placeholder='House number and street name'
-        type='text'
-        name='street'
-        value={detail.street.value}
-        isValid={detail.street.isValid}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <div className='mt-6'>
+      <div className='flex items-center mb-10'>
+        <input type='checkbox' className='w-5 h-5 p-1' />
+        <span className='text-base font-heading text-mine'>
+          &nbsp; Email me with news and offers
+        </span>
+      </div>
+      <h3 className='text-2xl leading-8 font-light font-roboto'>
+        Shipping Address
+      </h3>
+      <div className='sm:flex sm:justify-between sm:space-x-4'>
+        <div className='mt-4 sm:flex-1'>
+          <Input
+            type='text'
+            placeholder='First Name'
+            name='firstName'
+            value={detail.firstName.value}
+            isValid={detail.firstName.isValid}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </div>
+        <div className='mt-4 sm:flex-1'>
+          <Input
+            type='text'
+            placeholder='Last Name'
+            name='lastName'
+            value={detail.lastName.value}
+            isValid={detail.lastName.isValid}
+            onBlur={handleBlur}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className='mt-4'>
+        <Input
+          type='text'
+          placeholder='Company name (optional)'
+          name='company'
+          value={detail.company.value}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className='mt-4'>
+        <Input
+          placeholder='Address'
+          type='text'
+          name='street'
+          value={detail.street.value}
+          isValid={detail.street.isValid}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+      </div>
+
+      <div className='mt-4'>
         <Input
           placeholder='Apartment, suite, unit etc. (optional)'
           type='text'
@@ -208,24 +235,40 @@ export default function BillingDetail({
           onChange={handleChange}
         />
       </div>
+      <div className='mt-4'>
+        <Input
+          type='text'
+          placeholder='City'
+          value={city.value}
+          isValid={city.isValid}
+          onChange={handleCity}
+          onBlur={blurCity}
+        />
+      </div>
+
+      <div className='sm:flex sm:justify-between sm:space-x-4 sm:items-center'>
+        <div className='flex-1 border border-transparent rounded-md'>
+          <Select
+            options={states}
+            value={state}
+            onChange={handleStates}
+            placeholder='State / Country'
+          />
+        </div>
+
+        <div className='flex-1'>
+          <Input
+            placeholder='Postcode / Zip'
+            value={zipCode.value}
+            isValid={zipCode.isValid}
+            onChange={handleZip}
+            onBlur={blurZip}
+          />
+        </div>
+      </div>
+
       <Input
-        lable='Town and city *'
-        value={city.value}
-        isValid={city.isValid}
-        onChange={handleCity}
-        onBlur={blurCity}
-      />
-      <p className='text-base text-mine font-heading'>State / country * </p>
-      <Select options={states} value={state} onChange={handleStates} />
-      <Input
-        lable='Postcode / Zip *'
-        value={zipCode.value}
-        isValid={zipCode.isValid}
-        onChange={handleZip}
-        onBlur={blurZip}
-      />
-      <Input
-        lable='Phone *'
+        placeholder='Phone'
         type='number'
         name='phone'
         value={detail.phone.value}
@@ -233,23 +276,16 @@ export default function BillingDetail({
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      <Input
-        lable='Email address *'
-        type='email'
-        name='email'
-        value={detail.email.value}
-        isValid={detail.email.isValid}
-        onBlur={handleBlur}
-        onChange={handleChange}
-      />
+
       {/* checkbox */}
-      <input type='checkbox' />
+      {/* <input type='checkbox' />
       <span className='text-base font-heading text-mine'>
         &nbsp; Subscribe to our newsletter
-      </span>
-      <div className='mt-7'>
+      </span> */}
+      <div className='my-7'>
         <input
           type='checkbox'
+          className='w-5 h-5 p-1'
           onClick={() => setDifferentAddress(!differentAddress)}
         />
         <span className='font-heading text-lg lg:text-2.5xl font-bold text-mine'>

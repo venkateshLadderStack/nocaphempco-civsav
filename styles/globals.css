@@ -178,3 +178,19 @@ input:checked + div svg {
   background-color: rgba(241, 128, 62, 0.7);
   color: #fff;
 }
+
+.notification_badge {
+  background-color: rgba(114, 114, 114, 0.9);
+  width: 21px;
+  height: 21px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  right: -0.75em;
+  top: -0.75em;
+}
