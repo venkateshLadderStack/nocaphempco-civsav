@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 import Input from '@/components/global/input';
 import { states } from '@/constant/states';
 
@@ -10,6 +11,8 @@ export default function BillingDetail({
   taxRates,
   shippingObject,
   setShippingObject,
+  loading,
+  onClick,
 }: any) {
   const [differentAddress, setDifferentAddress] = useState(false);
 
@@ -321,6 +324,22 @@ export default function BillingDetail({
       )}
       <p className='text-base text-mine font-heading'>Order notes (optional)</p>
       <textarea className='w-full p-2 mt-1 outline-none bg-input font-heading focus-within:bg-gray-100'></textarea>
+      <div className='flex items-center mt-10'>
+        <div className='rounded-md shadow w-30'>
+          <button
+            className='w-64 h-59 flex items-center justify-center border border-transparent text-base font-medium rounded-md text-white bg-black py-4'
+            title={loading ? 'Loading...' : 'Place Order'}
+            id='card-button'
+            onClick={onClick}
+            disabled={loading}
+          >
+            Place Order
+          </button>
+        </div>
+        <Link href='/cart' passHref>
+          <p className='ml-6'>Return to cart</p>
+        </Link>
+      </div>
     </div>
   );
 }

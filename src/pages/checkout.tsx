@@ -167,6 +167,8 @@ const Checkout: NextPage = ({
                 setDetail={setDetail}
                 shippingObject={shippingObject}
                 setShippingObject={setShippingObject}
+                onClick={placeOrder}
+                loading={loading}
               />
             </div>
             <div className='flex-1 md:pl-12 border border-transparent md:border-l-gray-300'>

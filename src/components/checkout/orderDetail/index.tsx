@@ -181,14 +181,14 @@ export default function OrderDetail({
           .
         </p>
         <br />
-        <Button
+        {/* <Button
           type='button'
           size='small'
           title={loading ? 'Loading...' : 'Place Order'}
           id='card-button'
           onClick={onClick}
           disable={loading}
-        />
+        /> */}
       </div>
     </div>
   );
