@@ -199,8 +199,16 @@ input:checked + div svg {
   color: #333333;
 }
 
+.order_dt {
+  background-color: #fafafa;
+  box-shadow: 1px 0 0 #e1e1e1 inset;
+}
+
 @media screen and (min-width: 768px) {
   .w_52 {
     width: 52%;
+  }
+  .order_dt {
+    background-color: #fafafa;
   }
 }
