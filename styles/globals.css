@@ -194,3 +194,13 @@ input:checked + div svg {
   right: -0.75em;
   top: -0.75em;
 }
+
+.text_checkout {
+  color: #333333;
+}
+
+@media screen and (min-width: 768px) {
+  .w_52 {
+    width: 52%;
+  }
+}

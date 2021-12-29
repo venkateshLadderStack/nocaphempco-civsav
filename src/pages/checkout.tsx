@@ -157,10 +157,10 @@ const Checkout: NextPage = ({
         <div className='px-4'>
           <BreadCrumb currentPageLabel='Checkout' />
         </div>
-        <div className='px-4 py-8 max-w-screen-xl mt-0 mr-auto mb-0 ml-auto'>
-          <Coupon />
+
+        <div className=' mx-6 mt-0 mr-auto mb-0 ml-auto'>
           <div className='flex flex-col pt-12 md:flex-row md:justify-between md:space-x-5'>
-            <div className='md:w-7/12 md:pr-24'>
+            <div className='w_52 md:pr-24 pl-12 py-8 bg-white'>
               <BillingDetail
                 taxRates={taxRates}
                 detail={detail}
@@ -171,7 +171,13 @@ const Checkout: NextPage = ({
                 loading={loading}
               />
             </div>
-            <div className='flex-1 md:pl-12 border border-transparent md:border-l-gray-300'>
+            <div
+              style={{
+                backgroundColor: '#fafafa',
+                boxShadow: '1px 0 0 #e1e1e1 inset',
+              }}
+              className='flex-1 md:pl-12 pr-12 border border-transparent '
+            >
               <OrderDetail
                 list={list}
                 total={total}

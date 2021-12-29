@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import Link from 'next/link';
 import Input from '@/components/global/input';
 import { states } from '@/constant/states';
+import { country } from '@/constant/country';
 
 export default function BillingDetail({
   detail,
@@ -14,9 +15,17 @@ export default function BillingDetail({
   loading,
   onClick,
 }: any) {
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      borderColor: 'black',
+    }),
+  };
+
   const [differentAddress, setDifferentAddress] = useState(false);
 
   const [state, setState] = useState(shippingObject.state);
+  const [countryState, setCountryState] = useState(null);
   const [city, setCity] = useState<any>({
     value: shippingObject.city,
     isValid: shippingObject.city === '' ? null : true,
@@ -159,12 +168,12 @@ export default function BillingDetail({
 
   return (
     <div className='font-heading'>
-      <h3 className='text-2xl leading-8 font-light font-roboto'>
+      <h4 className='text-xl leading-8 font-normal font-roboto text_checkout'>
         Contact Information
-      </h3>
+      </h4>
       <div className='flex justify-between space-x-4'>
         <Input
-          placeholder='Email address'
+          placeholder='Email'
           type='email'
           name='email'
           value={detail.email.value}
@@ -174,14 +183,14 @@ export default function BillingDetail({
         />
       </div>
       <div className='flex items-center mb-10'>
-        <input type='checkbox' className='w-5 h-5 p-1' />
-        <span className='text-base font-heading text-mine'>
+        <input type='checkbox' className='w-4 h-4 p-1' />
+        <span className='text-base font-light text-mine'>
           &nbsp; Email me with news and offers
         </span>
       </div>
-      <h3 className='text-2xl leading-8 font-light font-roboto'>
+      <h4 className='text-xl leading-4 font-normal font-roboto text_checkout'>
         Shipping Address
-      </h3>
+      </h4>
       <div className='sm:flex sm:justify-between sm:space-x-4'>
         <div className='mt-4 sm:flex-1'>
           <Input
@@ -210,7 +219,7 @@ export default function BillingDetail({
       <div className='mt-4'>
         <Input
           type='text'
-          placeholder='Company name (optional)'
+          placeholder='Company (optional)'
           name='company'
           value={detail.company.value}
           onChange={handleChange}
@@ -252,10 +261,49 @@ export default function BillingDetail({
       <div className='sm:flex sm:justify-between sm:space-x-4 sm:items-center'>
         <div className='flex-1 border border-transparent rounded-md'>
           <Select
+            options={country}
+            value={countryState}
+            onChange={(value) => setCountryState(value)}
+            placeholder='Country'
+            defaultInputValue='United States'
+            styles={{
+              control: (base, state) => ({
+                ...base,
+                '&:hover': {
+                  border: '2px solid',
+                  borderColor: state.isFocused ? 'black' : 'lightgray',
+                },
+                '&:focus': { borderColor: 'black' }, // border style on hover
+                border: '1px solid lightgray', // default border color
+                boxShadow: 'none', // no box-shadow
+                height: '46px',
+                borderRadius: '6px',
+                fontSize: '14px',
+              }),
+            }}
+          />
+        </div>
+        <div className='flex-1 border border-transparent rounded-md xs:mt-4'>
+          <Select
             options={states}
             value={state}
             onChange={handleStates}
-            placeholder='State / Country'
+            placeholder='State'
+            styles={{
+              control: (base, state) => ({
+                ...base,
+                '&:hover': {
+                  border: '2px solid',
+                  borderColor: state.isFocused ? 'black' : 'lightgray',
+                },
+                '&:focus': { borderColor: 'black' }, // border style on hover
+                border: '1px solid lightgray', // default border color
+                boxShadow: 'none', // no box-shadow
+                height: '46px',
+                borderRadius: '6px',
+                fontSize: '14px',
+              }),
+            }}
           />
         </div>
 
@@ -285,10 +333,10 @@ export default function BillingDetail({
       <span className='text-base font-heading text-mine'>
         &nbsp; Subscribe to our newsletter
       </span> */}
-      <div className='my-7'>
+      <div className='my-7 flex items-center'>
         <input
           type='checkbox'
-          className='w-5 h-5 p-1'
+          className=' xs:w-4 xs:h-4 sm:w-5 sm:h-5 p-1'
           onClick={() => setDifferentAddress(!differentAddress)}
         />
         <span className='font-heading text-lg lg:text-2.5xl font-bold text-mine'>
@@ -323,11 +371,11 @@ export default function BillingDetail({
         </div>
       )}
       <p className='text-base text-mine font-heading'>Order notes (optional)</p>
-      <textarea className='w-full p-2 mt-1 outline-none bg-input font-heading focus-within:bg-gray-100'></textarea>
-      <div className='flex items-center mt-10'>
-        <div className='rounded-md shadow w-30'>
+      <textarea className='w-full p-2 mt-1 font-heading border border-gray-400 rounded-md p-3 focus:outline-none focus:border-black focus:ring-black focus:ring-1'></textarea>
+      <div className='flex items-center mt-10 xs:flex-col sm:flex-row'>
+        <div className='rounded-md shadow w-30 xs:w-full'>
           <button
-            className='w-64 h-59 flex items-center justify-center border border-transparent text-base font-medium rounded-md text-white bg-black py-4'
+            className='xs:w-full sm:w-64 h-59 flex items-center justify-center border border-transparent text-base font-medium rounded-md text-white bg-black py-4'
             title={loading ? 'Loading...' : 'Place Order'}
             id='card-button'
             onClick={onClick}
@@ -337,7 +385,7 @@ export default function BillingDetail({
           </button>
         </div>
         <Link href='/cart' passHref>
-          <p className='ml-6'>Return to cart</p>
+          <p className='sm:ml-6 xs:mt-4'>Return to cart</p>
         </Link>
       </div>
     </div>

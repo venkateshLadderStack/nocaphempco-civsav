@@ -25,6 +25,7 @@ module.exports = {
         grayLight: '#EEEEEE',
         mystic: '#e1e5ee',
         breadcrumb: '#16a085',
+        orangefocus: '#5baa00',
       },
       fontFamily: {
         heading: ['Poppins', 'sans-serif'],

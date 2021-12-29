@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/global/button';
+import Input from '@/components/global/input';
 
 // const renderAttributes = (value: any) => {
 //   const keys: string[] = [];
@@ -71,9 +72,7 @@ export default function OrderDetail({
 
   return (
     <div className='mt-8 md:mt-0 font-heading'>
-      <h3 className='text-2xl leading-8 font-bold font-roboto mb-7'>
-        Your order
-      </h3>
+      <h3 className='text-2xl leading-8 font-bold font-roboto mb-7'></h3>
       {/* <div className='flex items-center py-3 bg-input'>
         <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
           Product
@@ -90,17 +89,29 @@ export default function OrderDetail({
                 src={item?.image}
                 alt=''
                 layout='fixed'
-                width={100}
-                height={100}
+                width={74}
+                height={74}
+                className='rounded'
               />
               <div className='notification_badge'>{item?.quantity}</div>
             </div>
-            <div className='pl-4 flex-1'>{item?.name}</div>
-            <div className='pl-4 w-20'>${item?.price}</div>
+            <div className='pl-4 flex-1 text-sm font-medium text'>
+              {item?.name}
+            </div>
+            <div className='pl-4 w-20 text-sm font-medium'>${item?.price}</div>
           </div>
         );
       })}
       <hr className='mb-4' />
+      <div className='flex items-center'>
+        <div className='w-full pr-4'>
+          <Input placeholder='Discount Code' />
+        </div>
+        <button className='mr-1 w-1/4 sm:h-11 flex items-center justify-center border border-transparent text-base font-medium rounded-md text-white bg-black xs:h-12 xs:w-1/3'>
+          Apply
+        </button>
+      </div>
+      <hr className='my-4' />
       <div className='flex items-center py-3'>
         <p className='w-full  pl-3 text-base font-light font-heading text-mine '>
           Subtotal
@@ -162,10 +173,12 @@ export default function OrderDetail({
           ${tax.toFixed(2)}
         </p>
       </div>
+      <hr className='my-4' />
       <div className='flex items-center py-3'>
         <p className='w-full pl-3 text-base font-heading text-mine'>Total</p>
-        <p className='w-full pl-3 text-base font-bold font-heading text-mine'>
-          ${localTotal.toFixed(2)}
+        <p className='w-full pl-3 font-medium text-2xl'>
+          <span className='font-extralight text-sm mr-2'>USD</span> $
+          {localTotal.toFixed(2)}
         </p>
       </div>
       <div className='mt-6'>
